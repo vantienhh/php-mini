@@ -63,4 +63,44 @@ class QueryBuilder
         $statement->execute($params);
         return $statement->fetchAll( PDO::FETCH_CLASS, $this->model );
     }
+
+    public function create($params){
+        // var_dump($params);
+        // die();
+        $statement = $this->connection->prepare(
+            "INSERT INTO {$this->table} (title,content,date_time) VALUES (:title,:content,:date_time)",
+            $params
+        );
+        $statement->execute($params);
+
+    }
+
+    public function delete($id){
+        $statement=$this->connection->prepare(
+            "DELETE FROM {$this->table} WHERE ID = ?",
+            $id
+        );
+        $statement->execute($id);
+    }
+
+    public function find($id){
+         $statement=$this->connection->prepare(
+            "SELECT * FROM {$this->table} WHERE ID = ?",
+            $id
+        );
+        $statement->execute($id);
+        return $statement->fetchAll( PDO::FETCH_CLASS, $this->model );
+    }
+
+    public function update($data){
+        $statement=$this->connection->prepare(
+            "UPDATE {$this->table} SET title= :title, content=:content WHERE ID=:ID",
+            $data
+        );
+        $statement->execute($data);
+    }
+
+    public function page(){
+
+    }
 }

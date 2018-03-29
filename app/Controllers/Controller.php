@@ -12,6 +12,7 @@ abstract class Controller
 
 	public function __construct(App $app)
 	{
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
 		$this->app = $app;
 	}
 

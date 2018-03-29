@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Models;
+use PDO;
+use App\Core\Database\QueryBuilder;
 
 class Model
 {
@@ -8,4 +10,5 @@ class Model
 	{
 		// for any bootstrapping method invokes, if required.
 	}
+
 }
