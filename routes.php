@@ -5,23 +5,45 @@ $app->get('/', ['PagesController', 'home']);
 // login
 $app->get('/login',['LoginController','showLoginForm']);
 $app->post('/login',['LoginController', 'loginSubmit']);
+//logout
+$app->post('/logout',['LogoutController','logout']);
+
+$app->get('/admin',['PostsController','index']);
 
 // post
-$app->get('/post',['PostsController','index']);
+$app->get('/admin/post',['PostsController','index']);
+ //chia page
+$app->get('/admin/post/page',['PostsController','index']);
+
 //create
-$app->get('/post/create',['PostsController','createFrom']);
-$app->post('/post/create',['PostsController','create']);
+$app->get('/admin/post/create',['PostsController','createFrom']);
+$app->post('/admin/post/create',['PostsController','create']);
+//detail
+$app->get('/admin/post/detail',['PostsController','detail']);
 //update
-$app->get('/post/update',['PostsController','edit']);
-$app->post('/post/update',['PostsController','update']);
+$app->get('/admin/post/update',['PostsController','edit']);
+$app->post('/admin/post/update',['PostsController','update']);
+//delete
+$app->get('/admin/post/delete',['PostsController','delete']);
 
-$app->get('/post/delete',['PostsController','delete']);   //delete
-
-$app->get('/post/detail',['PostsController','detail']);   //detail
 
 # return json
-$app->post('users', ['UsersController', 'store']);
-$app->get('users', ['UsersController', 'index']);
+// $app->post('users', ['UsersController', 'store']);
+// $app->get('users', ['UsersController', 'index']);
+
+//user
+$app->get('/admin/user',['UsersController','index']);
+ //chia page
+$app->get('/admin/user/page',['UsersController','index']);
+//create
+$app->get('/admin/user/create',['UsersController','show']);
+$app->post('/admin/user/create',['UsersController','create']);
+//detail
+$app->get('/admin/user/detail',['UsersController','detail']);
+//update
+$app->get('/admin/user/update',['UsersController','edit']);
+$app->post('/admin/user/update',['UsersController','update']);
+//delete
 
 # return plain text
 $app->get('status', function ($app) {

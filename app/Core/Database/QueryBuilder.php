@@ -65,14 +65,19 @@ class QueryBuilder
     }
 
     public function create($params){
-        // var_dump($params);
-        // die();
         $statement = $this->connection->prepare(
             "INSERT INTO {$this->table} (title,content,date_time) VALUES (:title,:content,:date_time)",
             $params
         );
         $statement->execute($params);
+    }
 
+    public function createUser($params){
+        $statement = $this->connection->prepare(
+            "INSERT INTO {$this->table} (name,gender,email,password) VALUES (:name,:gender,:email,:pass1)",
+            $params
+        );
+        $statement->execute($params);
     }
 
     public function delete($id){
@@ -82,6 +87,14 @@ class QueryBuilder
         );
         $statement->execute($id);
     }
+
+    public function findEmail($email){
+        $statement=$this->connection->prepare(
+            "SELECT * FROM {$this->table} WHERE email = '$email'"
+        );
+        $statement->execute();
+        return $statement->fetchAll( PDO::FETCH_CLASS, $this->model );
+     }
 
     public function find($id){
          $statement=$this->connection->prepare(
@@ -100,7 +113,43 @@ class QueryBuilder
         $statement->execute($data);
     }
 
+    public function updateUser($data){
+        // var_dump($data);
+        // die();
+        $statement=$this->connection->prepare(
+            "UPDATE {$this->table} SET name= :name, email= :email, password= :password, gender= :gender WHERE ID=:ID",
+            $data
+        );
+        $statement->execute($data);
+    }
+
     public function page(){
+        if (isset($_GET['p'])) {
+            $page=$_GET['p'];
+        }else{
+            $page=1;
+        }
+
+        $num=5;  // Số bản ghi trên 1 trang
+        $start=$num*($page-1);  //bản ghi bắt đầu
+
+        //tính số trang
+        $statement=$this->connection->prepare(
+            "SELECT count(*) as num_row FROM {$this->table}"
+        );
+        $statement->execute();
+        //tổng số bản ghi
+        $num_row=$statement->fetchObject()->num_row;
+        //tổng số page
+        $this->num_page=ceil($num_row/$num);
+
+        $query=$this->connection->prepare(
+            "SELECT * FROM {$this->table} LIMIT $start,$num"
+        );
+
+        $query->execute();
+
+        return $query->fetchAll( PDO::FETCH_CLASS, $this->model );
 
     }
 }

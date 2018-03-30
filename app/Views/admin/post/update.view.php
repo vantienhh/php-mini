@@ -2,15 +2,15 @@
     include __DIR__ . "/../layout/header.php";
  ?>
 
-<form method="POST" action="/post/update">
+<form method="POST" action="/admin/post/update">
     <input type="hidden" name="ID" value="<?php echo $posts[0]->ID ?>">
     <fieldset class="form-group">
-        <label for="formGroupExampleInput">Title</label>
-        <input type="text" class="form-control" name="title" id="formGroupExampleInput" placeholder="<?php echo $posts[0]->title ?>">
+        <label for="formGroupExampleTitle">Title</label>
+        <input type="text" class="form-control" name="title" id="formGroupExampleTitle" value="<?php echo $posts[0]->title ?>">
     </fieldset>
 
     <fieldset class="form-group">
-        <label for="formGroupExampleInput2">Content</label>
+        <label for="formGroupExampleContent">Content</label>
         <textarea name="content"><?php echo $posts[0]->content ?></textarea>
     </fieldset>
 

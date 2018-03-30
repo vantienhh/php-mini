@@ -17,11 +17,16 @@
 
   <link rel="stylesheet" href="/../css/_all-skins.min.css">
 
+  <link rel="stylesheet" href="/../css/adminStyle.css">
+
   <script src="/../ckeditor/ckeditor.js"></script>
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
+  <?php
+    session_start();
+   ?>
   <div class="wrapper">
 
     <header class="main-header">
@@ -242,7 +247,15 @@
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <img src="/../images/user2-160x160.jpg" class="user-image" alt="User Image">
-                <span class="hidden-xs">Van Tien</span>
+                <span class="hidden-xs">
+                  <?php
+                    if (isset( $_COOKIE['userLogin'])) {
+                      echo $_COOKIE['userLogin'];
+                    }else{
+                      echo " ";
+                    }
+                  ?>
+                  </span>
               </a>
               <ul class="dropdown-menu">
                 <!-- User image -->
@@ -250,7 +263,13 @@
                   <img src="/../images/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                   <p>
-                    Van Tien - Web Developer
+                     <?php
+                    if (isset( $_COOKIE['userLogin'])) {
+                      echo $_COOKIE['userLogin'];
+                    }else{
+                      echo " ";
+                    }
+                    ?>- Web Developer
                     <small>Member since Nov. 2012</small>
                   </p>
                 </li>
@@ -275,7 +294,10 @@
                     <a href="#" class="btn btn-default btn-flat">Profile</a>
                   </div>
                   <div class="pull-right">
-                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                    <form action="/logout" method="POST">
+                        <button class="btn btn-default btn-flat">Sign out</button>
+                       <!-- <a href="#" class="btn btn-default btn-flat">Sign out</a> -->
+                    </form>
                   </div>
                 </li>
               </ul>
@@ -298,7 +320,15 @@
             <img src="/../images/user2-160x160.jpg" class="img-circle" alt="User Image">
           </div>
           <div class="pull-left info">
-            <p>Van Tien</p>
+            <p>
+               <?php
+                  if (isset( $_COOKIE['userLogin'])) {
+                    echo $_COOKIE['userLogin'];
+                  }else{
+                    echo " ";
+                  }
+                ?>
+            </p>
             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
           </div>
         </div>
@@ -324,8 +354,8 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i>User</a></li>
-              <li><a href="http://localhost:3000/post"><i class="fa fa-circle-o"></i>Post</a></li>
+              <li class="active"><a href="/admin/user"><i class="fa fa-circle-o"></i>User</a></li>
+              <li><a href="/admin/post"><i class="fa fa-circle-o"></i>Post</a></li>
             </ul>
           </li>
         </ul>

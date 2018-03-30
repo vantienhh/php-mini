@@ -26,8 +26,9 @@
                 $user = (new User())->login($this->app()->database, [$_POST['email'], $_POST['password']]);
 
                 if (count($user)==0) {
-                    header('Location: /login');
+                    header('Location: /admin/login');
                 } else {
+                    setcookie('userLogin',$_POST['email'],time()+100000);
                     header('Location: /');
                 }
             }

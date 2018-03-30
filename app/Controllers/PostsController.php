@@ -8,9 +8,13 @@ class PostsController extends Controller
 {
     public function index()
     {
-        $posts = $this->setupQuery()->selectAll();
+        $postPage=$this->setupQuery()->page();
 
-        return $this->app()->view('admin/post/index', ['posts' => $posts]);
+        $num_page=$this->setupQuery()->num_page;
+
+        // $posts = $this->setupQuery()->selectAll();
+
+        return $this->app()->view('admin/post/index', ['posts' => $postPage, 'num_page'=>$num_page]);
     }
 
     public function store()
@@ -29,17 +33,10 @@ class PostsController extends Controller
 
         $posts= $this->setupQuery()->create($_POST);
 
-        header('Location: /post');
+        header('Location: /admin/post');
     }
 
-    //delete
-    public function delete(){
-        $posts= $this->setupQuery()->delete($this->arrId($_GET['ID']));
-
-         header('Location: /post');
-    }
-
-    //detail
+     //detail
     public function detail(){
 
         $posts = $this->setupQuery()->find($this->arrId($_GET['ID']));
@@ -59,7 +56,14 @@ class PostsController extends Controller
 
         $posts = $this->setupQuery()->update($_POST);
 
-         header('Location: /post');
+         header('Location: /admin/post');
+    }
+
+    //delete
+    public function delete(){
+        $posts= $this->setupQuery()->delete($this->arrId($_GET['ID']));
+
+         header('Location: /admin/post');
     }
 
     //general
