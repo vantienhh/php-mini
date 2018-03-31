@@ -75,6 +75,10 @@ class UsersController extends Controller
 	}
 
 	//delete
+	public function delete(){
+		$users=$this->setupQuery()->delete($this->arrId($_GET['ID']));
+		header('Location: /admin/user');
+	}
 
 	 //general
     private function arrId($id){

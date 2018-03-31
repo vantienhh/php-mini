@@ -44,7 +44,7 @@ $app->get('/admin/user/detail',['UsersController','detail']);
 $app->get('/admin/user/update',['UsersController','edit']);
 $app->post('/admin/user/update',['UsersController','update']);
 //delete
-
+$app->get('/admin/user/delete',['UsersController','delete']);
 # return plain text
 $app->get('status', function ($app) {
 	return '<pre> I\'m OK </pre>';
