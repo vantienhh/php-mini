@@ -8,7 +8,7 @@ $app->post('/login',['LoginController', 'loginSubmit']);
 //logout
 $app->post('/logout',['LogoutController','logout']);
 
-$app->get('/admin',['PostsController','index']);
+$app->get('/admin',['UsersController','index']);
 
 // post
 $app->get('/admin/post',['PostsController','index']);

@@ -45,14 +45,14 @@ class App
 
         $response = $this->route($handler);
 
-        echo $this->respond($response);
+        // echo $this->respond($response);
     }
 
     public function respond($response)
     {
         if (! $response instanceof Response) {
             // $response = $this->response()->text($response); // another way of looking at it..
-            $response = $this->container->response->text($response); 
+            $response = $this->container->response->text($response);
         }
 
         return $response->getBody();

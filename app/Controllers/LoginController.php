@@ -5,8 +5,13 @@
 
     class LoginController extends Controller{
         public function showLoginForm(){
-            include __DIR__ . "/../Views/login.view.php";
-            die();
+            if (isset($_COOKIE['userLogin'])) {
+                 header('Location: /admin');
+            }else{
+                include __DIR__ . "/../Views/login.view.php";
+                die();
+            }
+
         }
 
         public function loginSubmit(){
@@ -29,7 +34,7 @@
                     header('Location: /admin/login');
                 } else {
                     setcookie('userLogin',$_POST['email'],time()+100000);
-                    header('Location: /');
+                    header('Location: /admin');
                 }
             }
         }

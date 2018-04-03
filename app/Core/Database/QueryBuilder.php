@@ -33,7 +33,13 @@ class QueryBuilder
 
     public function selectAll()
     {
-        $statement = $this->connection->prepare("select * from {$this->table}");
+        // $statement = $this->connection->prepare("select * from {$this->table}");
+        $statement = $this->connection->prepare(
+            "SELECT users.ID, users.`name`,posts.title,posts.image,posts.content,posts.date_time
+            FROM posts
+            INNER JOIN users
+            ON posts.user_id=users.ID;"
+        );
 
         $statement->execute();
 
@@ -66,7 +72,7 @@ class QueryBuilder
 
     public function create($params){
         $statement = $this->connection->prepare(
-            "INSERT INTO {$this->table} (title,content,date_time) VALUES (:title,:content,:date_time)",
+            "INSERT INTO {$this->table} (title,content,date_time,image) VALUES (:title,:content,:date_time,:image)",
             $params
         );
         $statement->execute($params);
@@ -150,6 +156,6 @@ class QueryBuilder
         $query->execute();
 
         return $query->fetchAll( PDO::FETCH_CLASS, $this->model );
-
     }
+
 }

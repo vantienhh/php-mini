@@ -7,6 +7,7 @@
             <tr>
                 <th class="text-center">ID</th>
                 <th class="text-center">Title</th>
+                <th class="text-center">Image</th>
                 <th class="text-center">Content</th>
                 <th class="text-center">Date - time</th>
                 <th class="text-center">Action</th>
@@ -17,7 +18,8 @@
                 <tr>
                     <td class="text-center"><?php echo $value->ID ?></td>
                     <td class="text-center"><?php echo $value->title ?></td>
-                    <td><?php echo $value->content ?></td>
+                    <td class="text-center"><img src="<?php echo $value->image ?>"></td>
+                    <td><?php echo "../".$value->content ?></td>
                     <td class="text-center"><?php echo $value->date_time ?></td>
                     <td>
                         <ul>

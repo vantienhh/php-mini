@@ -1,4 +1,5 @@
-<!doctype html>
+<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
     <head>
         <!-- Required meta tags -->
@@ -22,9 +23,6 @@
     </head>
     <body>
        <div class="wallpaper">
-        <?php
-            session_start();
-         ?>
             <header>
                 <!-- laptop  -->
                 <div class="d-none d-md-block">
@@ -251,80 +249,40 @@
                             </div>
                         </div>
                         <div class="owl-carousel owl-carousel-3">
-                            <div class="item">
+                           <?php foreach ($data as $key => $value): ?>
+                              <div class="item">
                                 <div class="card" id="nature">
-                                    <img src="images/home_4.png" alt="home">
+                                    <img src="<?php echo $data[$key]->image ?>" alt="home">
                                     <span class="tags-div background-green tags">Nature</span>
                                      <div class="card-body">
-                                          <p class="card-text">Donec elementum dui semper, prvetium dui quis, pretium nisl. Nunc quis ornare odio.</p>
+                                          <p class="card-text">
+                                            <?php echo $value->content ?>
+                                          </p>
                                     </div>
                                     <div class="card-footer border-0">
-                                          <small class="text-muted"><span class="color-grey">11 septemvber 2016 |</span> <a href="#">John Doe</a> </small>
+                                          <small class="text-muted"><span class="color-grey"><?php echo $value->date_time ?></span> <a href="#"><?php echo $value->name ?></a> </small>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="item">
-                                <div class="card id="people" ">
-                                    <img src="images/home_5.png" alt="home">
-                                    <span class="tags-div background-purple tags">People</span>
-                                     <div class="card-body">
-                                          <p class="card-text">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.</p>
-                                    </div>
-                                    <div class="card-footer border-0">
-                                          <small class="text-muted"><span class="color-grey">11 septemvber 2016 |</span> <a href="#">John Doe</a> </small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="card" id="tech">
-                                    <img src="images/home_6.png" alt="">
-                                     <span class="tags-div background-black tags">Tech</span>
-                                     <div class="card-body">
-                                          <p class="card-text">Sed arcu ipsum, convallis quis porttitor bibendum, convallis non eni.</p>
-                                    </div>
-                                    <div class="card-footer border-0">
-                                          <small class="text-muted"><span class="color-grey">11 septemvber 2016 |</span> <a href="#">John Doe</a> </small>
-                                    </div>
-                                </div>
-                            </div>
+                              </div>
+                           <?php endforeach ?>
                         </div>
                         <div class="owl-carousel owl-carousel-3">
-                            <div class="item">
-                                <div class="card" id="trip">
-                                    <img src="images/home_7.png" alt="home">
-                                    <span class="box-1-tag tags-div background-red tags">Trips</span>
+                           <?php foreach ($data as $key => $value): ?>
+                              <div class="item">
+                                <div class="card" id="nature">
+                                    <img src="<?php echo $data[$key]->image ?>" alt="home">
+                                    <span class="tags-div background-green tags">Nature</span>
                                      <div class="card-body">
-                                          <p class="card-text">Donec elementum dui semper, prvetium dui quis, pretium nisl. Nunc quis ornare odio.</p>
+                                          <p class="card-text">
+                                            <?php echo $value->content ?>
+                                          </p>
                                     </div>
                                     <div class="card-footer border-0">
-                                          <small class="text-muted"><span class="color-grey">11 septemvber 2016 |</span> <a href="#">John Doe</a> </small>
+                                          <small class="text-muted"><span class="color-grey"><?php echo $value->date_time ?></span> <a href="#"><?php echo $value->name ?></a> </small>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="item">
-                                <div class="card" id="trip">
-                                    <img src="images/home_8.png" alt="home">
-                                    <span class="box-1-tag tags-div background-red tags">Trips</span>
-                                     <div class="card-body">
-                                          <p class="card-text">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.</p>
-                                    </div>
-                                    <div class="card-footer border-0">
-                                          <small class="text-muted"><span class="color-grey">11 septemvber 2016 |</span> <a href="#">John Doe</a> </small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="card" id="fashion">
-                                    <img src="images/home_9.png" alt="home">
-                                     <span class="tags-div background-purple tags">Fashion</span>
-                                     <div class="card-body">
-                                          <p class="card-text">Sed arcu ipsum, convallis quis porttitor bibendum, convallis non eni.</p>
-                                    </div>
-                                    <div class="card-footer border-0">
-                                          <small class="text-muted"><span class="color-grey">11 septemvber 2016 |</span> <a href="#">John Doe</a> </small>
-                                    </div>
-                                </div>
-                            </div>
+                              </div>
+                           <?php endforeach ?>
                         </div>
                     </div>
                 </div>

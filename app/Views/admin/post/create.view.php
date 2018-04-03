@@ -2,10 +2,15 @@
     include __DIR__ . "/../layout/header.php";
  ?>
 
-    <form method="POST" action="admin/post/create">
+    <form method="POST" action="/admin/post/create" enctype="multipart/form-data">
         <fieldset class="form-group">
-            <label for="formGroupExampleInput1">Title</label>
-            <input type="text" name="name" class="form-control" id="formGroupExampleInput1" placeholder="Name">
+            <label for="formGroupExampleTitle">Title</label>
+            <input type="text" name="title" class="form-control" id="formGroupExampleTitle" placeholder="Name">
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label for="formGroupExampleImage">Image</label>
+            <input type="file" name="avatar">
         </fieldset>
 
         <fieldset class="form-group">
@@ -13,7 +18,7 @@
             <textarea name="content" id="content"></textarea>
         </fieldset>
 
-        <button type="submit" class="btn btn-primary" name="btnLogin">Tạo</button>
+        <button name="uploadclick" class="btn btn-primary">Tạo</button>
 
         <script>
           CKEDITOR.replace( 'content' );

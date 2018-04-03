@@ -51,16 +51,16 @@ class Response
 
 	public function withHeaders()
 	{
-		header(sprintf(
-            'HTTP/%s %s %s',
-            '1.1',
-            $this->statusCode,
-            ''
-        ));
+		// header(sprintf(
+  //           'HTTP/%s %s %s',
+  //           '1.1',
+  //           $this->statusCode,
+  //           ''
+  //       ));
 
-        foreach ($this->getHeaders() as $header) {
-            header($header[0] . ': ' . $header[1]);
-        }
+        // foreach ($this->getHeaders() as $header) {
+        //     header($header[0] . ': ' . $header[1]);
+        // }
 	}
 
 	public function getBody()

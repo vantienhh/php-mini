@@ -6,8 +6,15 @@ use App\Models\User;
 
 class UsersController extends Controller
 {
+	private function noLogin(){
+        if (!isset($_COOKIE['userLogin'])) {
+           return header('Location:/');
+        }
+    }
+
 	public function index()
 	{
+		 $this->noLogin();
 		$userPage=$this->setupQuery()->page();
 
         $num_page=$this->setupQuery()->num_page;
@@ -31,10 +38,12 @@ class UsersController extends Controller
 
 	//create
 	public function show(){
+		 $this->noLogin();
 		include __DIR__ . "/../Views/admin/user/create.view.php";
 	}
 
 	public function create(){
+		 $this->noLogin();
 		$reEmail=$this->setupQuery()->findEmail($_POST['email']);
 
 		//Kiểm tra pass và Email
@@ -51,6 +60,7 @@ class UsersController extends Controller
 
 	//detail
 	public function detail(){
+		 $this->noLogin();
 		$users= $this->setupQuery()->find($this->arrId($_GET['ID']));
 		if ($users[0]->gender==0) {
 			$users[0]->gender='Nam';
@@ -63,11 +73,13 @@ class UsersController extends Controller
 
 	//update
 	public function edit(){
+		 $this->noLogin();
 		$users=$this->setupQuery()->find($this->arrId($_GET['ID']));
 		return $this->app()->view('admin/user/update',['users'=>$users]);
 	}
 
 	public function update(){
+		 $this->noLogin();
 		unset($_POST['btnUpdate']);
 		$users=$this->setupQuery()->updateUser($_POST);
 
@@ -76,6 +88,7 @@ class UsersController extends Controller
 
 	//delete
 	public function delete(){
+		 $this->noLogin();
 		$users=$this->setupQuery()->delete($this->arrId($_GET['ID']));
 		header('Location: /admin/user');
 	}
